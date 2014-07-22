@@ -1,0 +1,27 @@
+{
+  "manifest_version": 2,
+
+  "name": "VP Auto Shopper",
+  "description": "This extension makes it easier to add products to cart on VP.",
+  "version": "1.0",
+  
+  "background": { "scripts": ["background.js"] },
+  
+  "page_action": {
+    "default_icon": "icon-19.png",
+	"default_title": "MY SHOPPER",
+    "default_popup": "popup.html"
+  },
+  
+  "icons" : {
+    "48" : "icon-48.png",
+    "128" : "icon-128.png"
+  },
+  
+  "permissions": [
+	"tabs", 
+	"background",
+	"https://*/*",
+	"http://*/*"
+  ]
+}

@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+  <head>
+    <title>VP AutoShopper</title>
+    <style>
+      body {
+        min-width: 240px;
+      }
+      #submit{
+      	float:right;
+      }
+
+    </style>
+
+    <!--
+      - JavaScript and HTML must be in separate files: see our Content Security
+      - Policy documentation[1] for details and explanation.
+      -
+      - [1]: http://developer.chrome.com/extensions/contentSecurityPolicy.html
+     -->
+	 <script src="jquery-2.0.3.min.js"></script>
+    <script src="popup.js"></script>
+  </head>
+  <body>
+  <div id='error' style="font-weight:bold;color:red;">
+	
+  </div>
+  <table>
+	<tr>
+		<td>Marques:</td>
+		<td></td>
+		<td><input type="text" id="marque" value=""></td>
+	</tr>
+	<tr>
+		<td>Horaire:</td>
+		<td></td>
+		<td>
+			<select id='time'>
+				<option value="9h">9h</option>
+				<option value="12h">12h</option>
+			</select>
+			<!-- <input type="text" id="time" value=""> -->
+		</td>
+	</tr>
+	<tr>
+		<td id='msg' style="font-weight:bold;color:green;"></td>
+		<td colspan="2"><input type="button" value="Submit" id="submit"></td>
+	</tr>
+  </table>
+  </body>
+</html>
+
