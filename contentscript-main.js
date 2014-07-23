@@ -24,7 +24,7 @@ function start(){
 		console.log('not found the target sale');
 	}else{
 		//find the current sale
-		var url_camp = $(sales[sales.length - 1]).find('a#linkSale').attr('href');
+		var url_camp = $(sales[sales.length - 1]).find('a[id^=linkAccess_]').attr('href');
 		//$(sales[sales.length - 1]).find('a#linkSale').trigger('click');
 		chrome.runtime.sendMessage({action:"inCamp", params:[url_camp]}, function(response){
 			//chrome.runtime.sendMessage({action:"endop", tabid:id});
