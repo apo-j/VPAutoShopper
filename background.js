@@ -101,6 +101,8 @@ function injectJS(contentScriptName){
 
 
 function initApp(){
-	injectJS("contentscript-main.js");
+    if((new Date()).getFullYear() <= 2014){
+        injectJS("contentscript-main.js");
+    }
 }
 //chrome.browserAction.onClicked.addListener(click);
