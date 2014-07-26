@@ -1,9 +1,9 @@
 {
   "manifest_version": 2,
 
-  "name": "VP Auto Shopper",
+  "name": "VP Auto Shopper reverse",
   "description": "This extension makes it easier to add products to cart on VP.",
-  "version": "1.0",
+  "version": "0.0",
   
   "background": { "scripts": ["background.js"] },
   

@@ -28,6 +28,7 @@ chrome.runtime.onMessage.addListener(
 		//console.log("background.js : init_main called");
 		var values = [];
 		values.push(new msg('time', localStorage['time']));
+        values.push(new msg('reverse', localStorage['reverse']));
 		var length = parseInt(localStorage['total']);
 		for(var i = 0; i < length; i = i + 1){
 			var key = 'marque_' + i;

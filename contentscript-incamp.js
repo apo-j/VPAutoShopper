@@ -16,5 +16,7 @@ function init(){
 		chrome.runtime.sendMessage({action:"endop"});
 	}, 50);
 }
-	
-init();	
+
+$(function(){
+    init();
+})

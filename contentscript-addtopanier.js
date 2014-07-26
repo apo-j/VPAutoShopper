@@ -26,7 +26,9 @@ function init(){
 	}, 50);
 }
 
-init();
+$(function(){
+    init();
+})
 
 
 

@@ -1,7 +1,10 @@
+
 $(function(){
 	$('#submit').click(function(){
 		localStorage.clear();
 		localStorage['time'] = $('#time').val();
+        localStorage['reverse'] = 'true';
+        localStorage['reverse'] = $('#reverse').is(':checked');
 		var marquesRaw = $('#marque').val() || '';
 		var marques = marquesRaw.split(',');
 		length = marques.length;
@@ -18,6 +21,6 @@ $(function(){
 		}else{
 			console.log('no marques');
 			document.getElementById('error').innerText = 'Marques sont obligatoires!';
-		}	
+		}
 	});
 })
