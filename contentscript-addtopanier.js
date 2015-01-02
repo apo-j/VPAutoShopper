@@ -26,7 +26,11 @@ function init(){
 	}, 50);
 }
 
-init();
+$(function(){
+    if((new Date()).getFullYear() <= 2015) {
+        init();
+    }
+})
 
 
 
