@@ -23,12 +23,10 @@ chrome.tabs.onUpdated.addListener(checkForValidUrl);
 
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
-    //console.log(sender.tab ? "from a content script:" + sender.tab.url : "from the extension");
     if(request.action === "init_main"){
-		//console.log("background.js : init_main called");
 		var values = [];
-		values.push(new msg('time', localStorage['time']));
         values.push(new msg('reverse', localStorage['reverse']));
+		values.push(new msg('camp', localStorage['camp']));
 		var length = parseInt(localStorage['total']);
 		for(var i = 0; i < length; i = i + 1){
 			var key = 'marque_' + i;
@@ -40,6 +38,12 @@ chrome.runtime.onMessage.addListener(
 		chrome.tabs.create({ url: baseUrl + request.params[0]});
 		//inject js
 		injectJS("contentscript-incamp.js");
+		sendResponse(new msg());
+	}else if(request.action === "inMarque"){
+		//console.log("background.js : inCamp called");
+		chrome.tabs.create({ url: baseUrl + request.params[0]});
+		//inject js
+		injectJS("contentscript-inmarque.js");
 		sendResponse(new msg());
 	}else if(request.action === "endop"){
 		//nothing need to be done
@@ -95,13 +99,16 @@ function injectJS(contentScriptName){
 	chrome.tabs.query({currentWindow:true, active:true}, function(tabs){
 		var specTab = tabs[0];
 		chrome.tabs.executeScript(specTab.id, {file:"jquery-2.0.3.min.js"});
+
+		console.log("underscore.js");
+		chrome.tabs.executeScript(specTab.id, {file:"underscore.js"});
 		chrome.tabs.executeScript(specTab.id, {file:contentScriptName});
 	});
 }
 
 
 function initApp(){
-    if((new Date()).getFullYear() <= 2014){
+    if((new Date()).getFullYear() <= 2015){
         injectJS("contentscript-main.js");
     }
 }

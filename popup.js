@@ -1,9 +1,10 @@
 
 $(function(){
-    if((new Date()).getFullYear() <= 2014){
+    if((new Date()).getFullYear() <= 2015){
         $('#submit').click(function(){
             localStorage.clear();
-            localStorage['time'] = $('#time').val();
+            localStorage['camp'] = $('#camp').val();
+            //localStorage['time'] = $('#time').val();
             localStorage['reverse'] = 'true';
             localStorage['reverse'] = $('#reverse').is(':checked');
             var marquesRaw = $('#marque').val() || '';
@@ -15,7 +16,6 @@ $(function(){
                     localStorage['marque_' + i] = marques[i].trim();
                 }
 
-                localStorage['quantity'] = $('#quantity').val() || 1;
                 chrome.extension.getBackgroundPage().initApp();
                 console.log("popup.js : call background to inject content scripts");
                 document.getElementById('msg').innerText = 'Submited!';

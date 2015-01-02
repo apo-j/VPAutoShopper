@@ -27,7 +27,7 @@ function init(){
 }
 
 $(function(){
-    if((new Date()).getFullYear() <= 2014) {
+    if((new Date()).getFullYear() <= 2015) {
         init();
     }
 })

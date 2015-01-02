@@ -8,12 +8,49 @@ function init(){
 				localStorage[response[i].key] = response[i].value;
 			}
 			console.log("contentscript-main.js : init done");
-			start();
+			start(response);
 		}
 	});
 }
 
-function start(){
+function start(response){
+	console.log("contentscript-main.js : start");
+	var $lastSale = $('ul.currentlySales>li.trmSales').last();
+	var capName = $lastSale.find('a.linkAccess>h4').text();
+
+	if(capName.toLowerCase().indexOf(localStorage['camp'].toLowerCase()) === -1){
+		location.reload();
+		chrome.runtime.sendMessage({action:"mainReload", params:[]});
+		console.log('not found the target sale');
+	}else{
+		var marques = _.filter(response, function(res){
+			return /Marque/i.test(res.key);
+		})
+
+		var $availableMarques = $lastSale.find('ul.trmLinks>li>a');
+
+		_.each(marques, function(marque){
+
+			var match = $availableMarques.each(function(idx, item){
+				if($(item).text().trim().toLowerCase() == marque.value.toLowerCase()){
+					chrome.runtime.sendMessage({action:"inMarque", params:[$(item).attr('href')]}, function(response){
+						//chrome.runtime.sendMessage({action:"endop", tabid:id});
+					});
+					return;
+				}
+			});
+
+		})
+
+		/*var url_camp = $lastSale.find('a[id^=linkAccess_]').attr('href');
+		//$(sales[sales.length - 1]).find('a#linkSale').trigger('click');
+		chrome.runtime.sendMessage({action:"inCamp", params:[url_camp]}, function(response){
+			//chrome.runtime.sendMessage({action:"endop", tabid:id});
+		});*/
+	}
+}
+
+/*function start(){
 	console.log("contentscript-main.js : start");
 	var sales = $('ul.currentlySales>li.trmSales');
 	var dateTime = $(sales[sales.length - 1]).find('p.dateSales>em:first-child').text();
@@ -30,10 +67,10 @@ function start(){
 			//chrome.runtime.sendMessage({action:"endop", tabid:id});
 		});
 	}
-}
+}*/
 
 $(function(){
-    if((new Date()).getFullYear() <= 2014){
+    if((new Date()).getFullYear() <= 2015){
 	    init();
     }
 })
