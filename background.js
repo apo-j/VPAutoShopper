@@ -100,6 +100,6 @@ function injectJS(contentScriptName){
 
 
 function initApp(){
-	injectJS("contentscript-main.js");
+	injectJS("contentscript-inlistitem.js");
 }
 //chrome.browserAction.onClicked.addListener(click);

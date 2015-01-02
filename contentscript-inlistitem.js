@@ -11,17 +11,24 @@ function init(){
 		var $eles = $('ul.artList>li');
 		$eles.each(function(index, item){
 				if(index >= position){
-					console.log('index : ' + index);
+					//console.log('index : ' + index);
 					if($(this).find('a').attr('href')){
 						port.postMessage({url: baseAddr + $(this).find('a').attr('href')});
 					}
-				}	
+				}
 		});
-		position = $eles.length;
+
+        if(position == $eles.length){
+            position = 0;
+        }else{
+            position = $eles.length;
+        }
+
+
 		console.log("Old : " + old + "; New : " + $(window).scrollTop());
-		if($(window).scrollTop() == old){
+		/*if($(window).scrollTop() == old){
 			chrome.runtime.sendMessage({action:"endop"});
-		}
+		}*/
 	}, 50);
 }
 
