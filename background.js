@@ -101,5 +101,6 @@ function injectJS(contentScriptName){
 
 function initApp(){
 	injectJS("contentscript-inlistitem.js");
+	//injectJS("contentscript-addtopanier.js");
 }
 //chrome.browserAction.onClicked.addListener(click);
